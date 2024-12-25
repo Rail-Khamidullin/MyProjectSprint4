@@ -16,6 +16,7 @@ import pages.SamokatOrderPage;
 import java.util.concurrent.TimeUnit;
 
 import static constants.ConstantsClass.URL_SAMOKAT;
+import static org.junit.Assert.assertEquals;
 
 // Тесты с проверкой формы заказа самоката через выбор кнопки Заказ в хедере
 @RunWith(Parameterized.class)
