@@ -2,6 +2,11 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 // Класс с подтверждением заказа самоката
 public class OrderWindowPage {
@@ -11,25 +16,26 @@ public class OrderWindowPage {
     private static final By ORDER_BUTTON_YES = By.xpath(".//button[@class = 'Button_Button__ra12g Button_Middle__1CSJM' and text() = 'Да']");
     // Локатор кнопки всплывающего окна "Хотите оформить заказ" с названием Нет
     private static final By ORDER_BUTTON_NO = By.xpath(".//button[text() = 'Нет']");
-    // Локатор текста из окна подтверждения успеха заказа самоката
-    private static final By orderCreated = By.xpath(".//div[@class = 'Order_ModalHeader__3FDaJ']");
+    // Локатор окна подтверждения успеха заказа самоката
+    public static final By FINAL_WINDOW = By.xpath(".//div[@class = 'Order_ModalHeader__3FDaJ']");
 
-    public OrderWindowPage(WebDriver driver) {
-        this.driver = driver;
-    }
+    public OrderWindowPage(WebDriver driver) {this.driver = driver;}
 
-    // Нажатие на кнопку Да или Нет в окне финального оформление заказа
+    // Нажатие на кнопку Да или Нет в окне подтверждения оформление заказа
     public void tapToFinishOrderButton(String chooseButton) {
 
-        if (chooseButton == "Yes") {
+        if (chooseButton.equals("Yes")) {
             driver.findElement(ORDER_BUTTON_YES).click();
         } else {
             driver.findElement(ORDER_BUTTON_NO).click();
         }
     }
 
-    // Получаем текст об успешности заказа
-    public String textOrderCreated() {
-        return driver.findElement(orderCreated).getText();
+    // Метод, который проверяет отображение окна с успешным заказом
+    public WebElement isVisibleFinalWindow() {
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOfElementLocated(FINAL_WINDOW));
+        WebElement element = driver.findElement(FINAL_WINDOW);
+        return element;
     }
 }

@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 // Класс с выбором кнопок главной страницы
 public class SamokatMainPage {
@@ -14,9 +16,9 @@ public class SamokatMainPage {
     // Локатор второй кнопки Заказ
     public static final By SECOND_ORDER_BUTTON = By.xpath(".//button[@class = 'Button_Button__ra12g Button_Middle__1CSJM' and text() = 'Заказать']");
     // Локтор кнопки Cookie
-    private static final By COOKIE_LOCATOR = By.id("rcc-confirm-button");
+    private static final By COOKIE_BUTTON = By.id("rcc-confirm-button");
     // Локатор для проверки отображения открывшейся страницы "Для кого самокат"
-    public static final By ORDER_LIST_IS_VISIABLE = By.xpath(".//div[text() = 'Для кого самокат']");
+    public static final By ORDER_LIST_IS = By.xpath(".//div[text() = 'Для кого самокат']");
 
     public SamokatMainPage(WebDriver driver) {this.driver = driver;}
 
@@ -29,22 +31,21 @@ public class SamokatMainPage {
     // Нажатие на первую кнопку Заказ (в хедере)
     public void tapToFirstOrderButton() {
         // Скрытие окна с cookie
-        driver.findElement(COOKIE_LOCATOR).click();
-        scrollToSecondButton();
+        driver.findElement(COOKIE_BUTTON).click();
         driver.findElement(FIRST_ORDER_BUTTON).click();
     }
 
     // Нажатие на вторую кнопку Заказ
     public void tapToSecondOrderButton() {
         // Скрытие окна с cookie
-        driver.findElement(COOKIE_LOCATOR).click();
+        driver.findElement(COOKIE_BUTTON).click();
         scrollToSecondButton();
         driver.findElement(SECOND_ORDER_BUTTON).click();
     }
 
     // Метод, который проверяет отображение необходимой страницы
     public WebElement isVivsableListMetod() {
-        WebElement element = driver.findElement(ORDER_LIST_IS_VISIABLE);
+        WebElement element = driver.findElement(ORDER_LIST_IS);
         return element;
     }
 }

@@ -1,4 +1,4 @@
-package subHeaderQuestion;
+package subheaderquestion;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -11,7 +11,7 @@ import pages.SamokatMainPage;
 
 import java.util.concurrent.TimeUnit;
 
-import static constants.ConstantsClass.URL_SAMOKAT;
+import static constants.Constants.URL_SAMOKAT;
 import static org.junit.Assert.assertTrue;
 
 // Запуск теста для второй кнопки Заказ на главной странице
@@ -35,6 +35,7 @@ public class TestOrderSecondButton {
         SamokatMainPage samokatMainPage = new SamokatMainPage(driver);
         samokatMainPage.tapToSecondOrderButton();
         WebElement isVisiableList = samokatMainPage.isVivsableListMetod();
+        // Страница отображается
         assertTrue(isVisiableList.isDisplayed());
     }
 

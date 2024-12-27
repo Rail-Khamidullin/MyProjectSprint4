@@ -1,4 +1,4 @@
-package subHeaderQuestion;
+package subheaderquestion;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -12,7 +12,7 @@ import pages.QuestionPage;
 
 import java.util.concurrent.TimeUnit;
 
-import static constants.ConstantsClass.URL_SAMOKAT;
+import static constants.Constants.URL_SAMOKAT;
 import static org.junit.Assert.assertEquals;
 
 // Запуск тестов для проверки наличия вопросов и правильных ответов
@@ -63,9 +63,9 @@ public class TestQuestion {
         // Скролим сайт до подзаголовка с вопросами
         questionPage.scrollQuestion();
         // Получаем текст ответов с сайта
-        String actuallyText = questionPage.tapToQuestionAndReturnAnswer(numberOfQuestion);
+        String actualText = questionPage.tapToQuestionAndReturnAnswer(numberOfQuestion);
         // Сравниваем тексты
-        assertEquals("Текст: " + actuallyText + " НЕ соответствует требованиям" + actuallyText, expectedText, actuallyText);
+        assertEquals("Текст: " + actualText + " НЕ соответствует требованиям" + actualText, expectedText, actualText);
     }
 
     @After

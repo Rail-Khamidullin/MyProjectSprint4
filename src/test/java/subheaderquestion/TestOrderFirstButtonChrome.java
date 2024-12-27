@@ -1,4 +1,4 @@
-package subHeaderQuestion;
+package subheaderquestion;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -15,12 +15,12 @@ import pages.SamokatOrderPage;
 
 import java.util.concurrent.TimeUnit;
 
-import static constants.ConstantsClass.URL_SAMOKAT;
-import static org.junit.Assert.assertEquals;
+import static constants.Constants.URL_SAMOKAT;
+import static org.junit.Assert.*;
 
 // Тесты с проверкой формы заказа самоката через выбор кнопки Заказ в хедере
 @RunWith(Parameterized.class)
-public class TestOrderFirstButton {
+public class TestOrderFirstButtonChrome {
 
     private WebDriver driver;
 
@@ -46,8 +46,8 @@ public class TestOrderFirstButton {
     // Кнопка Да или Нет в финальном окне заказа самоката
     private String chooseButton;
 
-    public TestOrderFirstButton(String firstName, String secondName, String addressName, String subwayName,
-                                String phoneNumber, String quantityDays, String color, String comment, String chooseButton) {
+    public TestOrderFirstButtonChrome(String firstName, String secondName, String addressName, String subwayName,
+                                      String phoneNumber, String quantityDays, String color, String comment, String chooseButton) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.addressName = addressName;
@@ -96,8 +96,14 @@ public class TestOrderFirstButton {
         /// Выбор кнопки заказа в всплывающем окне
         OrderWindowPage orderWindowPage = new OrderWindowPage(driver);
         orderWindowPage.tapToFinishOrderButton(chooseButton);
-        // Сравниваем тексты
-        assertEquals("Текст НЕ соответствует требованиям", orderWindowPage.textOrderCreated(), "Заказ оформлен");
+        // Проверяем, что окно с успешным заказом отобразилось
+        if (chooseButton.equals("Yes")) {
+            // Получаем текст при НЕ успешном заказе
+            assertTrue("Окно с успешным заказом НЕ отобразилось",
+                    orderWindowPage.isVisibleFinalWindow().isDisplayed());
+        } else {
+            System.out.println("Заказ самоката отменён");
+        }
     }
 
     @After

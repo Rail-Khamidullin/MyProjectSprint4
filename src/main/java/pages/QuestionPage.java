@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 // Вопросы на главной странице
 public class QuestionPage {
 
@@ -29,7 +31,7 @@ public class QuestionPage {
 
     // Ожидание отображения блока с вопросами
     public void waitForQuestionModule() {
-        new WebDriverWait(driver, 3)
+        new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(IS_VISIBLE_QUESTION));
     }
 

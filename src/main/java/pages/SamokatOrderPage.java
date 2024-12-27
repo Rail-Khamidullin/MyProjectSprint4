@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 
 public class SamokatOrderPage {
 
@@ -34,7 +36,7 @@ public class SamokatOrderPage {
     public void tapToSubwayStation(String name) {
         By station = By.xpath(".//li[@class = 'select-search__row' and @data-index = '" + name + "']");
         // Ожидание появления необходимой станции
-        new WebDriverWait(driver, 3)
+        new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(station));
         driver.findElement(station).click();
     }
@@ -47,7 +49,7 @@ public class SamokatOrderPage {
         driver.findElement(SUBWAY_ORDER_FIELD).click();
         tapToSubwayStation(subwayName);
         driver.findElement(PHONE_NUMBER_FIELD).sendKeys(phoneNumber);
-        new WebDriverWait(driver, 3)
+        new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(NEXT_BUTTON));
         driver.findElement(NEXT_BUTTON).click();
     }
