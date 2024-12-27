@@ -16,8 +16,8 @@ public class OrderWindowPage {
     private static final By ORDER_BUTTON_YES = By.xpath(".//button[@class = 'Button_Button__ra12g Button_Middle__1CSJM' and text() = 'Да']");
     // Локатор кнопки всплывающего окна "Хотите оформить заказ" с названием Нет
     private static final By ORDER_BUTTON_NO = By.xpath(".//button[text() = 'Нет']");
-    // Локатор окна подтверждения успеха заказа самоката
-    public static final By FINAL_WINDOW = By.xpath(".//div[@class = 'Order_ModalHeader__3FDaJ']");
+    // Локатор кнопки окна подтверждения успеха заказа самоката
+    public static final By FINAL_WINDOW_BUTTON = By.xpath(".//*[@id = 'root']//button[(@class = 'Button_Button__ra12g Button_Middle__1CSJM') " + "and (text() = 'Посмотреть статус')]");
 
     public OrderWindowPage(WebDriver driver) {this.driver = driver;}
 
@@ -34,8 +34,8 @@ public class OrderWindowPage {
     // Метод, который проверяет отображение окна с успешным заказом
     public WebElement isVisibleFinalWindow() {
         new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(FINAL_WINDOW));
-        WebElement element = driver.findElement(FINAL_WINDOW);
+                .until(ExpectedConditions.visibilityOfElementLocated(FINAL_WINDOW_BUTTON));
+        WebElement element = driver.findElement(FINAL_WINDOW_BUTTON);
         return element;
     }
 }

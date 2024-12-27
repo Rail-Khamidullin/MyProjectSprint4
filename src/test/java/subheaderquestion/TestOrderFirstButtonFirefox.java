@@ -6,7 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.AboutRentPage;
 import pages.OrderWindowPage;
@@ -97,7 +99,7 @@ public class TestOrderFirstButtonFirefox {
         orderWindowPage.tapToFinishOrderButton(chooseButton);
         // Проверяем, что окно с успешным заказом отобразилось
         if (chooseButton.equals("Yes")) {
-            // Получаем текст успешного заказа
+            // Получаем текст при НЕ успешном заказе
             assertTrue("Окно с успешным заказом НЕ отобразилось",
                     orderWindowPage.isVisibleFinalWindow().isDisplayed());
         } else {
